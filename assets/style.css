@@ -20,6 +20,10 @@ textarea{
   border-radius: 0;
   border-bottom: 10px solid black;
 }
+.day {
+  color: blue;
+  font-size: 2rem;
+}
 
 .description{
   white-space: pre-wrap;
