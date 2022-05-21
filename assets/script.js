@@ -1,31 +1,14 @@
-var timeBlocksEl  = document.getElementById("container");
 var currentDayEl = document.getElementById("currentDay");
-var currentTimeEl = document.getElementById("currentTime");
-var saveButtonEl =  document.getElementById("saveBtn");
-
-
-
-
-
-var save9am = document.getElementById("saveBtn9am");
-
-
-
-
 
 var currentDay =  moment(currentDay).format('dddd');
 var currentHour = moment().hour();
-console.log (currentHour);
 
 //display current day at top of page
 currentDayEl.append(currentDay);
 
+load ();
 
-// var saveButton = addEventListener("click", )
-
-
-
-// color code each block
+// color code each block by time of day
 function blockColor() {
     if (currentHour > 9) {
         $("#9amText").addClass("past");
@@ -100,13 +83,25 @@ function blockColor() {
     }
 };
 
+    //save text to local storage
+    $(".saveBtn").on("click", function () {
+        var text = $(this).siblings(".description").val();
+        var time = $(this).parent().attr("id");
 
-// function save(){
+        localStorage.setItem(time, text);
+    })
 
-// }
-
-// function load() {
-
-// }
+    //run load function when page loads
+function load() {
+    $("#9am .description").val(localStorage.getItem("9am"));
+    $("#10am .description").val(localStorage.getItem("10am"));
+    $("#11am .description").val(localStorage.getItem("11am"));
+    $("#12pm .description").val(localStorage.getItem("12pm"));
+    $("#1pm .description").val(localStorage.getItem("1pm"));
+    $("#2pm .description").val(localStorage.getItem("2pm"));
+    $("#3pm .description").val(localStorage.getItem("3pm"));
+    $("#4pm .description").val(localStorage.getItem("4pm"));
+    $("#5pm .description").val(localStorage.getItem("5pm"));
+}
 
 blockColor();
